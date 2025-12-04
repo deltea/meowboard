@@ -3,9 +3,10 @@
 
 @theme {
   --color-bg: #66a1ff;
-  --color-bg-1: #6b61ff;
+  --color-dark: #6b61ff;
+  --color-dark-1: #5749d6;
   --color-fg: #f0eff4;
-  --color-muted: #737278;
+  --color-muted: #9e9ca4;
   --color-accent: #fadda2;
 
   --font-sans: "Nunito", sans-serif;
@@ -13,10 +14,10 @@
 
   --text-icon: 26px;
   --spacing-nav: 4rem;
-  --shadow-base: 0px 8px 0 var(--color-bg-1);
-  --shadow-muted: 0px 5px 0 var(--color-bg-1);
+  --shadow-base: 0px 5px 0 var(--color-dark-1);
+  --shadow-muted: 0px 5px 0 var(--color-dark);
 }
 
 body {
-  @apply bg-bg text-fg font-sans font-bold selection:bg-muted selection:text-fg;
+  @apply bg-bg text-fg font-sans font-bold selection:bg-dark selection:text-fg;
 }

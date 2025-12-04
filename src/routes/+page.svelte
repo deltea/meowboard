@@ -1,10 +1,13 @@
 <script lang="ts">
-  interface Key {
-    position: number;
-    isBlack: boolean;
-    label: string;
-    keymap: string;
-  }
+  import { Howl } from "howler";
+  import hotkeys from "hotkeys-js";
+  import { onMount } from "svelte";
+
+  const sound = new Howl({
+    src: ["/meowsynth.wav"],
+    volume: 0.5,
+    preload: true,
+  });
 
   const keys = [
     { position: 0, isBlack: false, label: "C4", keymap: "z" },
@@ -20,11 +23,24 @@
     { position: 5.5, isBlack: true, label: "A#4", keymap: "j" },
     { position: 6, isBlack: false, label: "B4", keymap: "m" },
   ];
+
+  function playSound() {
+    sound.play();
+  }
+
+  onMount(() => {
+    for (const key of keys) {
+      hotkeys(key.keymap, (event) => {
+        event.preventDefault();
+        playSound();
+      });
+    }
+  });
 </script>
 
 <main class="min-h-screen flex flex-col">
   <nav class="flex justify-between items-center hnav pr-5">
-    <a href="/" class="text-2xl font-borel font-black -mb-4 flex gap-0.5 items-center group bg-bg-1 rounded-br-3xl pr-6 pl-4 py-4">
+    <a href="/" class="text-2xl font-borel font-black -mb-4 flex gap-0.5 items-center group bg-dark rounded-br-3xl pr-6 pl-4 py-4 shadow-base">
       <iconify-icon icon="mingcute:cat-fill" class="text-3xl -translate-y-0.5 group-hover:-rotate-12 duration-200"></iconify-icon>
       <span class="translate-y-2">nekoboard</span>
     </a>
@@ -41,14 +57,18 @@
         {#each keys as key, i}
           {#if key.isBlack}
             <button
+              onclick={playSound}
               style:left={`${key.position * 68}px`}
-              class="absolute -translate-y-8 top-0 h-2/3 w-16 rounded-2xl shadow-muted bg-bg-1 z-10 duration-100 flex flex-col justify-end cursor-pointer"
+              class="absolute -translate-y-8 top-0 h-2/3 w-16 rounded-2xl shadow-base bg-dark z-10 active:shadow-none active:-translate-y-[27px] duration-100 flex flex-col justify-end cursor-pointer"
             >
               <span class="pb-2 text-fg font-bold">{key.label}</span>
             </button>
           {:else}
-            <button class="h-full rounded-2xl shadow-muted w-16 active:shadow-none active:translate-y-[5px] duration-100 flex flex-col justify-end bg-fg cursor-pointer">
-              <span class="pb-2 text-bg-1 font-bold">{key.label}</span>
+            <button
+              onclick={playSound}
+              class="h-full rounded-2xl shadow-muted w-16 active:shadow-none active:translate-y-[5px] duration-100 flex flex-col justify-end bg-fg cursor-pointer"
+            >
+              <span class="pb-2 text-dark font-bold">{key.label}</span>
             </button>
           {/if}
         {/each}
