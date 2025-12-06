@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Key from "$lib/components/Key.svelte";
   import { fly } from "svelte/transition";
+  import { cyclePalette } from "$lib/stores/theme";
 
   const bgSpeed = 1;
   let bgOffset = $state(0);
@@ -55,13 +56,6 @@
 
       <div class="flex gap-4 duration-200 {visualizerOpen ? "translate-y-16" : ""}">
         <div class="flex flex-col justify-center gap-4">
-          <!-- <button
-            aria-label="volume"
-            onclick={() => (muted = !muted)}
-            class="cursor-pointer flex justify-center items-center rounded-2xl bg-accent shadow-accent grow w-16 active:shadow-none active:translate-y-[5px] duration-100"
-          >
-            <iconify-icon icon={muted ? "mingcute:volume-off-fill" : "mingcute:volume-fill"} class="text-3xl"></iconify-icon>
-          </button> -->
           <a
             aria-label="github"
             href="https://github.com/deltea/meowboard"
@@ -71,6 +65,7 @@
           </a>
           <button
             aria-label="palette"
+            onclick={cyclePalette}
             class="cursor-pointer flex justify-center items-center rounded-2xl bg-accent shadow-accent grow w-16 active:shadow-none active:translate-y-[5px] duration-100"
           >
             <iconify-icon icon="mingcute:palette-fill" class="text-3xl"></iconify-icon>
