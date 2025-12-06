@@ -1,5 +1,4 @@
 <script lang="ts">
-	import hotkeys from "hotkeys-js";
   import { onMount } from "svelte";
   import { Howl } from "howler";
 
@@ -45,19 +44,30 @@
   }
 
   onMount(() => {
-    hotkeys(keymap, { keyup: true }, (event) => {
-      event.preventDefault();
-      if (event.type === "keydown") {
-        console.log("keydown");
-        if (!isDown) {
-          isDown = true;
-          playSound();
-        }
-      } else if (event.type === "keyup") {
-        console.log("keyup");
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === keymap && !event.repeat && !isDown) {
+        event.preventDefault();
+        isDown = true;
+        isDown = true;
+        playSound();
+      }
+    };
+
+    const handleKeyup = (event: KeyboardEvent) => {
+      if (event.key === keymap) {
+        event.preventDefault();
+        isDown = false;
         isDown = false;
       }
-    });
+    };
+
+    document.addEventListener('keydown', handleKeydown);
+    document.addEventListener('keyup', handleKeyup);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+      document.removeEventListener('keyup', handleKeyup);
+    };
   });
 </script>
 
