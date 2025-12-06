@@ -47,3 +47,13 @@
   --color-accent: #7aa2f7;
   --color-accent-1: #3d59a1;
 }
+
+:root[data-palette="rose-pine"] {
+  --color-bg: #232136;
+  --color-dark: #6e6a86;
+  --color-dark-1: #575268;
+  --color-fg: #e0def4;
+  --color-muted: #908caa;
+  --color-accent: #f5c2e7;
+  --color-accent-1: #cba6f7;
+}

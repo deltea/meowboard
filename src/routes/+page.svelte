@@ -4,7 +4,7 @@
   import { fly } from "svelte/transition";
   import { cyclePalette } from "$lib/stores/theme";
 
-  const bgSpeed = 1;
+  const bgSpeed = 0.5;
   let bgOffset = $state(0);
   let muted = $state(false);
   let visualizerOpen = $state(false);
