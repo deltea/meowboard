@@ -36,6 +36,7 @@
     src: ["/meowsynth.wav"],
     volume: 0.5,
     preload: true,
+    // svelte-ignore state_referenced_locally
     rate: getRateForNote(label)
   });
 
@@ -48,7 +49,6 @@
       if (event.key === keymap && !event.repeat && !isDown) {
         event.preventDefault();
         isDown = true;
-        isDown = true;
         playSound();
       }
     };
@@ -57,16 +57,15 @@
       if (event.key === keymap) {
         event.preventDefault();
         isDown = false;
-        isDown = false;
       }
     };
 
-    document.addEventListener('keydown', handleKeydown);
-    document.addEventListener('keyup', handleKeyup);
+    document.addEventListener("keydown", handleKeydown);
+    document.addEventListener("keyup", handleKeyup);
 
     return () => {
-      document.removeEventListener('keydown', handleKeydown);
-      document.removeEventListener('keyup', handleKeyup);
+      document.removeEventListener("keydown", handleKeydown);
+      document.removeEventListener("keyup", handleKeyup);
     };
   });
 </script>

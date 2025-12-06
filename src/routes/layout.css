@@ -1,13 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Borel&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import "tailwindcss";
 
+:root {
+  --bg-offset: 0px;
+}
+
 @theme {
   --color-bg: #66a1ff;
   --color-dark: #6b61ff;
   --color-dark-1: #5749d6;
   --color-fg: #f0eff4;
   --color-muted: #9e9ca4;
-  --color-accent: #fadda2;
+  --color-accent: #8ecde6;
+  --color-accent-1: #5ea3d9;
 
   --font-sans: "Nunito", sans-serif;
   --font-borel: 'Borel', sans-serif;
@@ -16,6 +21,7 @@
   --spacing-nav: 4rem;
   --shadow-base: 0px 5px 0 var(--color-dark-1);
   --shadow-muted: 0px 5px 0 var(--color-dark);
+  --shadow-accent: 0px 5px 0 var(--color-accent-1);
 }
 
 body {
